@@ -16,6 +16,34 @@ const reset = () => {
     hide.className = "hide";
   }
 };
+//
+// test
+//
+const checkEmpty = (name, gender) => {
+  if (name.length !== 0 && gender.length !== 0) {
+    const genderArray = [
+      "maschio",
+      "uomo",
+      "donna",
+      "femmina",
+      "transgender",
+      "transessuale",
+      "non binario",
+      "genderqueer",
+      "genderfluid",
+      "agender",
+      "altro",
+    ];
+
+    for (let i = 0; i < genderArray.length; i++) {
+      if (gender === genderArray[i]) {
+        return true;
+      }
+    }
+  } else {
+    return false;
+  }
+};
 
 // esercizio
 const ex1 = () => {
@@ -23,9 +51,11 @@ const ex1 = () => {
   reset();
   // ottengo i dati tramite prompt, tranformando gender tutto in minuscolo
   let name = prompt("Inserisci il tuo nome");
-  let gender = prompt("Inserisci il tuo genere").toLowerCase();
+  let gender = prompt(
+    "Inserisci il tuo genere (Maschio, Femmina, Transgender, Transessuale, Non binario, Genderqueer, Genderfluid, Agender)"
+  ).toLowerCase();
 
-  if (name.length !== 0 || gender.length !== 0) {
+  if (checkEmpty(name, gender)) {
     switch (gender) {
       case "maschio":
       case "uomo":
@@ -39,6 +69,7 @@ const ex1 = () => {
 
       case "transgender":
       case "transessuale":
+      case "trans":
         genderOut.className = ex1Out.classList + " purple";
         break;
 
